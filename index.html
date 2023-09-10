@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            place-items: center;
+            background-color: #08000e;
+        }
+
+        form {
+            width: 300px;
+            height: 420px;
+            border-radius: 10px;
+            border: 2px solid #464646;
+            padding: 20px;
+            background-color: #242328;
+            box-shadow: -3px 3px 10px #000000a4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        legend {
+            font-size: 1.8rem;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-weight: bolder;
+            color: #e5e2e2;
+            margin: 20px;
+        }
+
+        label {
+            font-size: 18px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            display: block;
+            color: white;
+            margin: 5px;
+        }
+
+        input {
+            font-size: 18px;
+            width: 240px;
+            height: 35px;
+            padding: 5px;
+            border: none;
+            border-radius: 3px;
+            background-color: rgba(55, 55, 55, 0.823);
+        }
+
+        button {
+            font-size: 1.1rem;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-weight: bold;
+            width: 250px;
+            height: 50px;
+            border: none;
+            border-radius: 5px;
+            background-color: #fffdfd;
+            color: black;
+            transition: .3s ease-in-out;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        button:hover {
+            background-color: #c0c0c0;
+        }
+
+        .outher {
+            display: flex;
+        }
+
+        .outher > button {
+            font-size: 13px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            width: 112px;
+            height: 40px;
+            margin: 10px;
+            background-color: #5454547c;
+            color: #f2f2f2;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .outher > button:hover {
+            background-color: #6f6f6f;
+        }
+
+        .circle {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            position: absolute;
+            z-index: 1;
+        }
+
+        .blue {
+            transform: translate(-170px, -110px);
+            background-image: linear-gradient(to bottom, #0080ff82, #5caaf8cc);
+        }
+
+        .orange {
+            transform: translate(130px, 310px);
+            background-image: linear-gradient(to right, #ff440089, #ffa600a3);
+        }
+
+        .logo {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+
+        #view {
+            -webkit-appearance: none;
+            display: none;
+        }
+
+        .viewBox {
+            cursor: pointer;
+            transform: translate(215px, -35px);
+        }
+
+        .viewBox img {
+            width: 20px;
+            position: absolute;
+            opacity: .7;
+            transition: .3s;
+        }
+
+        .viewBox img:hover {
+            opacity: 1;
+        }
+
+        .noView {
+            scale: 0;
+        }
+
+        #view:checked ~ .view {
+            scale: 0;
+        }
+
+        #view:checked ~ .noView {
+            scale: 1;
+        }
+
+    </style>
+</head>
+<body>
+    <form>
+        <legend>Faça Login</legend>
+
+        <span class="circle blue"></span>
+        <div class="input-box">
+            <label for="email">Nome de Usuário</label>
+            <input type="email" id="email" placeholder="Email ou Telefone" required>
+            <br><br>
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" minlength="6" placeholder="Senha" required>
+
+            <label class="viewBox">
+                <abbr title="Mostrar Senha">
+                    <input type="checkbox" id="view">
+                    <img src="img/view.png" class="view">
+                    <img src="img/no-view.png" class="noView">
+
+                </abbr>
+            </label>
+        </div>
+        <br><br>
+        <button>Entrar</button>
+        <br>
+        <div class="outher">
+            <button>
+                <img src="img/google.png" class="logo">
+                Google
+            </button>
+            <button>
+                <img src="img/facebook.png" class="logo">
+                Facebook
+            </button>
+        </div>
+        <span class="circle orange"></span>
+    </form>
+
+    <script>
+        let view = document.querySelector('#view');
+        let viewBox = document.querySelector('.viewBox');
+        let pass = document.querySelector('#senha');
+        let abbr = document.querySelector('abbr');
+
+        viewBox.onclick = function() {
+            if (view.checked) {
+                pass.setAttribute('type', 'text');
+                abbr.setAttribute('title', 'Ocultar Senha');
+            } else {
+                pass.setAttribute('type', 'password');
+                abbr.setAttribute('title', 'Mostrar Senha');
+            }
+        }
+    </script>
+</body>
+</html>
